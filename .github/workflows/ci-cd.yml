@@ -40,7 +40,8 @@ jobs:
 
       - name: Create GCP service account key file
         run: |
-          echo "${{ secrets.GCP_SA_KEY }}" | sed 's/\\n/\n/g' > $HOME/gcloud-key.json
+          echo "${{ secrets.GCP_SA_KEY }}" | tr -d '\r' > $HOME/gcloud-key.json
+          cat $HOME/gcloud-key.json
 
       - name: Set up Google Cloud SDK
         uses: google-github-actions/setup-gcloud@v1
